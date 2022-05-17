@@ -30,26 +30,26 @@ jobs:
            heroku_api_key: ${{secrets.HEROKU_API_KEY}} #TODO: Add API key for the heroku account as a repo secret
            heroku_app_name: "constellation-node-app-staging" #TODO: Update the name of the staging application created in heroku
            heroku_email: "jyotsna.singh11@gmail.com" #TODO: Update the emailID registered with heroku.
-#    trigger_e2e_tests:
-#      needs: deploy-staging
-#      runs-on: ubuntu-latest
-#      steps:
-#        # TODO: Replace the remote origin url with the account or organization where you are forking the repository to.
-#        # TODO: REPO_PUSH_TOKEN is a PAT token that should be created with the repo scope and stored as a repo secret
-#        - name: Pull E2E tests suite
-#          run: |
-#            cd ../
-#            git clone https://github.com/<account-name>/e2e-test-suite
-#            cd e2e-test-suite/
-#            git init
-#            cd deployments/
-#            echo "DEPLOYMENT TRIGGERED IN ${GITHUB_REPOSITORY} FOR ${GITHUB_SHA}" >> deployment.txt
-#            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-#            git config --global user.name "github-actions[bot]"
-#            git commit -m "Deployment changes" -a
-#            git remote remove origin
-#            git remote add origin https://${{env.REPO_PUSH_TOKEN}}@github.com/<account-name>/e2e-test-suite.git 
-#            git push origin master
+   trigger_e2e_tests:
+     needs: deploy-staging
+     runs-on: ubuntu-latest
+     steps:
+       # TODO: Replace the remote origin url with the account or organization where you are forking the repository to.
+       # TODO: REPO_PUSH_TOKEN is a PAT token that should be created with the repo scope and stored as a repo secret
+       - name: Pull E2E tests suite
+         run: |
+           cd ../
+           git clone https://github.com/<account-name>/e2e-test-suite
+           cd e2e-test-suite/
+           git init
+           cd deployments/
+           echo "DEPLOYMENT TRIGGERED IN ${GITHUB_REPOSITORY} FOR ${GITHUB_SHA}" >> deployment.txt
+           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+           git config --global user.name "github-actions[bot]"
+           git commit -m "Deployment changes" -a
+           git remote remove origin
+           git remote add origin https://${{env.REPO_PUSH_TOKEN}}@github.com/<account-name>/e2e-test-suite.git 
+           git push origin master
 #    deploy-production:
 #      needs: deploy-staging
 #      environment: production
