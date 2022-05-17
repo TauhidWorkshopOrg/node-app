@@ -39,7 +39,7 @@ jobs:
        - name: Pull E2E tests suite
          run: |
            cd ../
-           git clone https://github.com/<account-name>/e2e-test-suite
+           git clone https://github.com/TauhidWorkshopOrg/e2e-test-suite
            cd e2e-test-suite/
            git init
            cd deployments/
@@ -48,7 +48,7 @@ jobs:
            git config --global user.name "github-actions[bot]"
            git commit -m "Deployment changes" -a
            git remote remove origin
-           git remote add origin https://${{env.REPO_PUSH_TOKEN}}@github.com/<account-name>/e2e-test-suite.git 
+           git remote add origin https://${{env.REPO_PUSH_TOKEN}}@github.com/TauhidWorkshopOrg/e2e-test-suite.git 
            git push origin master
 #    deploy-production:
 #      needs: deploy-staging
